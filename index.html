@@ -333,9 +333,7 @@
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="slider3a">
         <label class="onoffswitch-label" for="slider3a">
             <span class="onoffswitch-inner" id="slider3bef"></span>
-
             <span class="onoffswitch-switch" id="slider3b"></span>
-
         </label>
     </div>
 
@@ -350,16 +348,17 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <style>
         .geocoder {
-        position: absolute;
-        z-index: -1;
-        width: 50%;
-        top: 60px;
-        left: 10px;
+            position: absolute;
+            z-index: -1;
+            width: 50%;
+            top: 60px;
+            left: 10px;
         }
+
         .mapboxgl-ctrl-geocoder {
-        min-width: 100%;
+            min-width: 100%;
         }
-        </style>
+    </style>
 
 
     <h2> _ _ _ _ _ Stitching the World</h2>
@@ -375,19 +374,21 @@
         });
 
         var infotext0 = '<h2 style="text-align:right;">' + '_ _ Welcome! _ _ _ _  ' + '</h2>'
-            + '<h3>' + "Embroidered Maps and Women's Geographical Education" + '</h3>'
-            + 'Judith A. Tyner analyzes in her book MAP SAMPLERS - maps stitched with thread and needle. From the late 18th century until about 1840 girls embroidered map samplers mainly in the British Isles and the United States. She describes the connection of needlework with education as well as analyzing these maps. '
-            + '<p/>' + 'This map visualizes the maps Judith A. Tyner mentiones and others found furthermore.' + '<p/>' + ' One layer (blue) depicts the map according to their place of origin. As it is difficult to determine the location not all maps can be localized.' + '<p/>' + ' The other layer (green) shows all the maps according to the area mapped. ' + '<p/>' + 'The box in the right (this one) shows the known information about these map samplers. This is retrieved from the bookpages and -figures and the websites cited. Clicking on one of the links leads (most of the times) to an image of the respective map sampler. '
-            + '<p/>' + 'This map is also stitched...kind of...it imitates a stitched one. Different than those of the 18th and 19th century but maybe a stitched map of today would look like this one. For information according to the map symbols - click on them - it is an interactive legend.'
-            + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6>' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
+            + '<p>' + 'From the late 18th century until about 1840 girls embroidered map samplers mainly in the British Isles and the United States. ' + '</p>'
+            + '<p/>' + '<p>' + 'This map visualizes map samplers Judith A. Tyner mentiones in her book "Stitching the World" and others found furthermore.' + '</p>' + '<p/>'
+            + '<p>' + 'This <span style="text-shadow:0px 0px 3px #000000">box</span> will show the known information about these map samplers, when clicking on an icon. This is retrieved from the bookpages and -figures and the websites cited (mostly with image of the sampler).' + '</p>'
+            +'<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>' + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span> all map samplers according to the area mapped' + '</p>' + '<p/>'
+            + '<p>' + 'Interactive <span style="text-shadow:0px 0px 3px #000000">legend</span>: click on the map symbol you want to get to know more about.' + '</p>'
+            + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
 
         var infotext = '<h2 style="text-align:right;">' + " _ _ _ _ _ _ Info _ _ _  " + '</h2>'
-            + '<h3>' + "Embroidered Maps and Women's Geographical Education" + '</h3>'
-            + 'Judith A. Tyner analyzes in her book MAP SAMPLERS - maps stitched with thread and needle. From the late 18th century until about 1840 girls embroidered map samplers mainly in the British Isles and the United States. She describes the connection of needlework with education as well as analyzing these maps. '
-            + '<p/>' + 'This map visualizes the maps Judith A. Tyner mentiones and others found furthermore.' + '<p/>' + ' One layer (blue) depicts the map according to their place of origin. As it is difficult to determine the location not all maps can be localized.' + '<p/>' + ' The other layer (green) shows all the maps according to the area mapped. ' + '<p/>' + 'The box in the right (this one) shows the known information about these map samplers. This is retrieved from the bookpages and -figures and the websites cited. Clicking on one of the links leads (most of the times) to an image of the respective map sampler. '
-            + '<p/>' + 'This map is also stitched...kind of...it imitates a stitched one. Different than those of the 18th and 19th century but maybe a stitched map of today would look like this one. For information according to the map symbols - click on them - it is an interactive legend.'
-            + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6>' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
+            + '<p>' + 'From the late 18th century until about 1840 girls embroidered map samplers mainly in the British Isles and the United States. ' + '</p>'
+            + '<p/>' + '<p>' + 'This map visualizes map samplers Judith A. Tyner mentiones in her book "Stitching the World" and others found furthermore.' + '</p>' + '<p/>'
+            + '<p>' + 'This <span style="text-shadow:0px 0px 3px #000000">box</span> will show the known information about these map samplers, when clicking on an icon. This is retrieved from the bookpages and -figures and the websites cited (mostly with image of the sampler).' + '</p>'
+            +'<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>' + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span> all map samplers according to the area mapped' + '</p>' + '<p/>'
+            + '<p>' + 'Interactive <span style="text-shadow:0px 0px 3px #000000">legend</span>: click on the map symbol you want to get to know more about.' + '</p>'
+            + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
 
         var impressumtext = '<h2>Impressum</h2><br /><b>Angaben gem&auml;&szlig; &sect; 5 TMG</b><p>Karin Erbe, Rebekka Spano<br /><br />Lehrstuhl für Kartografie<br />Arcisstr. 21<br />80333 München <br /></p><p>E-Mail: ga96bom@mytum.de<br /></p>'
@@ -411,7 +412,7 @@
                 accessToken: mapboxgl.accessToken,
                 mapboxgl: mapboxgl
 
-            }),'top-left'
+            }), 'top-left'
         );
 
         map.addControl(new mapboxgl.NavigationControl(), 'top-left');
@@ -879,7 +880,7 @@
         });
 
 
-        //layer with map sampler info
+        //clusters: layer with map sampler info
         map.on('load', function () {
 
             map.addSource('women_school', {
@@ -946,7 +947,7 @@
                 paint: {
                     'circle-color': '#2ad4ff', 'circle-radius': 20, 'circle-opacity': 0.5
                 },
-                'maxzoom': 6.5
+                'maxzoom': 7.5
             });
 
             map.addLayer({
@@ -960,7 +961,7 @@
                     'text-size': 12,
                     visibility: 'visible'
                 },
-                'maxzoom': 6.5
+                'maxzoom': 7.5
             });
 
             // inspect a cluster on click
