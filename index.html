@@ -112,7 +112,7 @@
         .map-overlay3 {
             position: relative;
             bottom: 0;
-            background: rgba(255, 255, 255);
+            background: rgb(255, 255, 255);
             margin-right: 20px;
             font-family: Arial, sans-serif;
             overflow: auto;
@@ -214,7 +214,7 @@
             display: block;
             overflow: hidden;
             cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0);
+            border: 2px solid rgba(138, 50, 50, 0);
             border-radius: 50px;
         }
 
@@ -250,16 +250,44 @@
         .onoffswitch-inner:after {
             content: "";
             padding-right: 10px;
-            background-color: #9e9e9e;
+            background-color: rgba(221, 221, 221, 0.774);
             color: #ffffff;
             text-align: right;
         }
 
-        .onoffswitch-switch {
+        .onoffswitch-switch1 {
             display: block;
             width: 10px;
             margin: 5px;
-            background: rgb(255, 255, 255);
+            background: #2ad4ff;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 16px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            border-radius: 50px;
+            transition: all 0.3s ease-in 0s;
+        }
+
+        .onoffswitch-switch2 {
+            display: block;
+            width: 10px;
+            margin: 5px;
+            background: #7fff2a;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 16px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            border-radius: 50px;
+            transition: all 0.3s ease-in 0s;
+        }
+
+        .onoffswitch-switch3 {
+            display: block;
+            width: 10px;
+            margin: 5px;
+            background: #585858;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -273,8 +301,17 @@
             margin-left: 0;
         }
 
-        .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+        .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch1 {
             right: 0px;
+            background-color: #ffffff
+        }
+        .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch2 {
+            right: 0px;
+            background-color: #ffffff
+        }
+        .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch3 {
+            right: 0px;
+            background-color: #ffffff
         }
 
         #slider2bef:before {
@@ -319,21 +356,21 @@
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="slider1a">
         <label class="onoffswitch-label" for="slider1a">
             <span class="onoffswitch-inner"></span>
-            <span class="onoffswitch-switch"></span>
+            <span class="onoffswitch-switch1" id="slider1b"></span>
         </label>
     </div>
     <div class="onoffswitch" id="slider2" onclick="updateByMappedArea()">
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="slider2a">
         <label class="onoffswitch-label" for="slider2a">
             <span class="onoffswitch-inner" id="slider2bef"></span>
-            <span class="onoffswitch-switch"></span>
+            <span class="onoffswitch-switch2" ></span>
         </label>
     </div>
     <div class="onoffswitch" id="slider3" onclick="updateSymbols()">
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="slider3a">
         <label class="onoffswitch-label" for="slider3a">
             <span class="onoffswitch-inner" id="slider3bef"></span>
-            <span class="onoffswitch-switch" id="slider3b"></span>
+            <span class="onoffswitch-switch3" id="slider3b"></span>
         </label>
     </div>
 
@@ -391,7 +428,7 @@
             + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
 
-        var impressumtext = '<h2>Impressum</h2><br /><b>Angaben gem&auml;&szlig; &sect; 5 TMG</b><p>Karin Erbe, Rebekka Spano<br /><br />Lehrstuhl für Kartografie<br />Arcisstr. 21<br />80333 München <br /></p><p>E-Mail: ga96bom@mytum.de<br /></p>'
+        var impressumtext = '<h2>Impressum</h2><br /><b>Angaben gem&auml;&szlig; &sect; 5 TMG</b><p>Karin Erbe, Rebekka Spano<br /><br />Lehrstuhl für Kartographie<br />Arcisstr. 21<br />80333 München <br /></p><p>E-Mail: ga96bom@mytum.de<br /></p>'
             + '<b>Haftung f&uuml;r Inhalte</b><p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p><p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<br /></p>'
             + '<b>Haftung f&uuml;r Links</b><p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p><p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<br /></p>'
             + '<b>Urheberrecht</b><p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p><p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>'
