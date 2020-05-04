@@ -259,7 +259,7 @@
             display: block;
             width: 10px;
             margin: 5px;
-            background: #2ad4ff;
+            background: rgb(42, 212, 255, 0.5);
             position: absolute;
             top: 0;
             bottom: 0;
@@ -273,7 +273,7 @@
             display: block;
             width: 10px;
             margin: 5px;
-            background: #7fff2a;
+            background: rgba(127, 255, 42, 0.5);
             position: absolute;
             top: 0;
             bottom: 0;
@@ -287,7 +287,7 @@
             display: block;
             width: 10px;
             margin: 5px;
-            background: #585858;
+            background: rgba(88, 88, 88, 0.5);
             position: absolute;
             top: 0;
             bottom: 0;
@@ -305,10 +305,12 @@
             right: 0px;
             background-color: #ffffff
         }
+
         .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch2 {
             right: 0px;
             background-color: #ffffff
         }
+
         .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch3 {
             right: 0px;
             background-color: #ffffff
@@ -363,7 +365,7 @@
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="slider2a">
         <label class="onoffswitch-label" for="slider2a">
             <span class="onoffswitch-inner" id="slider2bef"></span>
-            <span class="onoffswitch-switch2" ></span>
+            <span class="onoffswitch-switch2"></span>
         </label>
     </div>
     <div class="onoffswitch" id="slider3" onclick="updateSymbols()">
@@ -414,7 +416,7 @@
             + '<p>' + 'From the late 18th century until about 1840 girls embroidered map samplers mainly in the British Isles and the United States. ' + '</p>'
             + '<p/>' + '<p>' + 'This map visualizes map samplers Judith A. Tyner mentiones in her book "Stitching the World" and others found furthermore.' + '</p>' + '<p/>'
             + '<p>' + 'This <span style="text-shadow:0px 0px 3px #000000">box</span> will show the known information about these map samplers, when clicking on an icon. This is retrieved from the bookpages and -figures and the websites cited (mostly with image of the sampler).' + '</p>'
-            +'<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>' + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span> all map samplers according to the area mapped' + '</p>' + '<p/>'
+            + '<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>' + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span> all map samplers according to the area mapped' + '</p>' + '<p/>'
             + '<p>' + 'Interactive <span style="text-shadow:0px 0px 3px #000000">legend</span>: click on the map symbol you want to get to know more about.' + '</p>'
             + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
@@ -423,7 +425,7 @@
             + '<p>' + 'From the late 18th century until about 1840 girls embroidered map samplers mainly in the British Isles and the United States. ' + '</p>'
             + '<p/>' + '<p>' + 'This map visualizes map samplers Judith A. Tyner mentiones in her book "Stitching the World" and others found furthermore.' + '</p>' + '<p/>'
             + '<p>' + 'This <span style="text-shadow:0px 0px 3px #000000">box</span> will show the known information about these map samplers, when clicking on an icon. This is retrieved from the bookpages and -figures and the websites cited (mostly with image of the sampler).' + '</p>'
-            +'<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>' + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span> all map samplers according to the area mapped' + '</p>' + '<p/>'
+            + '<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>' + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span> all map samplers according to the area mapped' + '</p>' + '<p/>'
             + '<p>' + 'Interactive <span style="text-shadow:0px 0px 3px #000000">legend</span>: click on the map symbol you want to get to know more about.' + '</p>'
             + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
@@ -447,10 +449,11 @@
         var geocoder = map.addControl(
             new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
-
+                mapboxgl: mapboxgl,
+                placeholder: 'Search location'
             }), 'top-left'
         );
+
 
         map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
@@ -486,11 +489,11 @@
                 .addTo(map);
 
             var web = feature.properties.Website;
-            var webs = web.split("http");
-            var i = 1;
+            var webs = web.split("<br>");
+            var i = 0;
             var website = "";
             while (i < webs.length) {
-                website = website + '<a href=' + 'http' + webs[i] + ' target="_blank">' + 'http' + webs[i] + '</a>' + '<p/>';
+                website = website + '<a href=' + webs[i] + ' >' + webs[i] + '</a>' + '<p/>';
                 i++;
             }
 
@@ -522,7 +525,7 @@
                 locat = ", " + loc;
             }
 
-            document.getElementById('infobox').innerHTML = '<h2 style="text-align:right;">' + " _ _ _ _ _ _ _ _ by _ _ _  " + '</h2>' +
+            document.getElementById('infobox').innerHTML = '<h2 style="text-align:right;">' + " _ _ _ _ _ _ _ by _ _ _  " + '</h2>' +
                 '<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3>'
                 + '<h3>' + feature.properties.Date + '</h3>'
                 + feature.properties.Country + ' ' + locat + ' ' + teacher
@@ -549,11 +552,11 @@
                 .addTo(map);
 
             var web = feature.properties.Website;
-            var webs = web.split("http");
-            var i = 1;
+            var webs = web.split("<br>");
+            var i = 0;
             var website = "";
             while (i < webs.length) {
-                website = website + '<a href=' + 'http' + webs[i] + ' target="_blank">' + 'http' + webs[i] + '</a>' + '<p/>';
+                website = website + '<a href=' + webs[i] + ' >' + webs[i] + '</a>' + '<p/>';
                 i++;
             }
 
@@ -924,7 +927,7 @@
                 type: 'geojson',
                 // Point to GeoJSON data.
                 // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-                data: 'https://api.mapbox.com/datasets/v1/ga63zup/ck9js9oum0vts2ko0a8zgps1f/features?access_token=pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA',
+                data: 'https://api.mapbox.com/datasets/v1/ga63zup/ck9sdfeed03gq2ro5gfqtaqbd/features?access_token=pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA',
                 cluster: true,
                 clusterMaxZoom: 13, // Max zoom to cluster points on
                 clusterRadius: 70 // Radius of each cluster when clustering points (defaults to 50)
@@ -1056,7 +1059,7 @@
             map.addSource('women_content', {
                 type: 'geojson',
                 // Point to GeoJSON data.
-                data: 'https://api.mapbox.com/datasets/v1/ga63zup/ck9jstkgs09ek2lt54rfliuus/features?access_token=pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA',
+                data: 'https://api.mapbox.com/datasets/v1/ga63zup/ck9sbd5gg0h5f2kqs50snh2jg/features?access_token=pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA',
                 cluster: true,
                 clusterMaxZoom: 5, // Max zoom to cluster points on
                 clusterRadius: 70 // Radius of each cluster when clustering points (defaults to 50)
@@ -1124,7 +1127,7 @@
                 paint: {
                     'circle-color': '#7fff2a', 'circle-radius': 20, 'circle-opacity': 0.5
                 },
-                'maxzoom': 5
+                'maxzoom': 6
             });
 
             map.addLayer({
@@ -1138,7 +1141,7 @@
                     'text-size': 12,
                     visibility: 'none'
                 },
-                'maxzoom': 5
+                'maxzoom': 6
             });
 
             // inspect a cluster on click
@@ -1198,7 +1201,6 @@
                     'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
                     'text-size': 20,
                     visibility: 'none'
-
                 },
                 paint: { 'text-color': '#5e5e5e', 'text-halo-width': 2, 'text-halo-color': "rgba(127, 255, 0, 0.5)" }
             });
