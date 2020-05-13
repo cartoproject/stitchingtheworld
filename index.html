@@ -422,7 +422,7 @@
             + '<p>' + ' <span style="text-shadow:0px 0px 3px #2ad4ff"> Blue layer:</span> map samplers according to their place of origin (school) (not all map samplers can be localized)' + '</p>' + '<p/>'
             + '<p>' + '<span style="text-shadow:0px 0px 3px #7fff2a"> Green layer:</span>* all map samplers according to the area mapped<br><span style="font-size:10px">*limited zoom levels</span> ' + '</p>' + '<p/>'
             + '<p>' + 'Interactive <span style="text-shadow:0px 0px 3px #000000">legend</span>: click on the map symbol you want to get to know more about.' + '</p>'
-            + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spono, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
+            + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spano, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
 
         var infotext0 = '<h2 style="text-align:right;">' + '_ _ Welcome! _ _ _ _  ' + '</h2>'
@@ -495,10 +495,8 @@
                 .setLngLat(feature.geometry.coordinates)
                 .setHTML('<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3><h5>' + feature.properties.Depicted + '</h5>')
                 .addTo(map);
-
-            popup.on('close', function (e) {
-                document.getElementById('infobox').innerHTML = '';
-            });
+ 
+            //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            });
 
 
             var web = feature.properties.Website;
@@ -564,9 +562,8 @@
                 .setHTML('<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3>')
                 .addTo(map);
 
-            popup.on('close', function (e) {
-                document.getElementById('infobox').innerHTML = '';
-            });
+            
+            //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            });
 
             var web = feature.properties.Website;
             var webs = web.split("<br>");
