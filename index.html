@@ -38,7 +38,7 @@
         }
 
         h4 {
-            margin: 10px 10px 10px 10px;
+            margin: 10px 10px 10px 0px;
             font-size: 1.2em;
         }
 
@@ -152,7 +152,7 @@
             display: block;
             position: absolute;
             width: 230px;
-            
+
             padding: 10px;
             border: none;
             font-size: 12px;
@@ -343,11 +343,27 @@
             top: 125px;
             right: 290px;
 
-            
+
         }
-        
-        .mapboxgl-popup-close-button{font-size: 24px!important;}
-        .mapboxgl-popup-content { border: 2px dashed black; border-radius: 5px; border-top: -1px; background: rgba(255, 255, 255, 0.95);}
+
+        .mapboxgl-popup-close-button {
+            font-size: 24px !important;
+            color: rgba(93, 93, 93, 1);
+        }
+
+        .mapboxgl-popup-content {
+            box-shadow: 0 1px 20px 11px rgba(0,0,0,.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+            -webkit-align-self: center;
+            align-self: center;
+            border-bottom: none;
+            border-top-color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 11px;
+        }
     </style>
 </head>
 
@@ -499,7 +515,7 @@
                 .setLngLat(feature.geometry.coordinates)
                 .setHTML('<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3><h5>' + feature.properties.Depicted + '</h5>')
                 .addTo(map);
- 
+
             //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            });
 
 
@@ -566,7 +582,7 @@
                 .setHTML('<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3>')
                 .addTo(map);
 
-            
+
             //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            });
 
             var web = feature.properties.Website;
@@ -1073,6 +1089,12 @@
             map.on('mouseleave', 'women_school_layer', function () {
                 map.getCanvas().style.cursor = '';
             });
+            map.on('mouseenter', 'unclustered-point_school', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'unclustered-point_school', function () {
+                map.getCanvas().style.cursor = '';
+            });
 
 
         });
@@ -1216,6 +1238,12 @@
                 map.getCanvas().style.cursor = 'pointer';
             });
             map.on('mouseleave', 'women_content_layer', function () {
+                map.getCanvas().style.cursor = '';
+            });
+            map.on('mouseenter', 'unclustered-point_content', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'unclustered-point_content', function () {
                 map.getCanvas().style.cursor = '';
             });
 
