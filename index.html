@@ -7,11 +7,9 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="fonts/StitchMedium/stylesheet.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="fonts/StitchBold/stylesheet.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="fonts/StitchBoldZahlen/stylesheet.css" type="text/css" charset="utf-8" />
-    <meta name="robots" content="noindex, nofollow">
-    <!--no indexing & tracing by Google & Co.-->
+    <link rel="stylesheet" href="fonts/MixStitchMedium/stylesheet.css" type="text/css" charset="utf-8" /> <!--importing fonts-->
+    <link rel="stylesheet" href="fonts/MixStitchBold/stylesheet.css" type="text/css" charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow"> <!--no indexing & tracing by Google & Co.-->
     <style>
         body {
             margin: 0;
@@ -51,11 +49,9 @@
         }
 
         h6 {
-            font-family: 'mixstitchmedium';
+            font-family: 'mixstitchregularmedium';
             font-size: 8pt;
         }
-
-
 
         .map-overlay {
             position: absolute;
@@ -63,7 +59,7 @@
             right: 0;
             background: rgba(255, 255, 255, 0.9);
             margin-right: 20px;
-            font-family: 'mixstitchmedium', normal;
+            font-family: 'mixstitchregularmedium', normal;
             font-family: Arial, sans-serif;
             overflow: auto;
             border-radius: 3px;
@@ -78,8 +74,7 @@
             top: 0;
             padding-right: 10px;
             margin-right: 0px;
-            font-family: 'mixstitchmedium', cursive;
-
+            font-family: 'mixstitchregularmedium', cursive;
         }
 
         .map-overlay2 {
@@ -87,7 +82,7 @@
             bottom: 0;
             background: rgba(255, 255, 255, 0.8);
             margin-right: 20px;
-            font-family: 'mixstitchmedium', normal;
+            font-family: 'mixstitchregularmedium', normal;
             font-family: Arial, sans-serif;
             overflow: auto;
             border-radius: 3px;
@@ -143,7 +138,7 @@
             right: 260px;
             background: rgba(255, 255, 255, 0.8);
             margin-right: 20px;
-            font-family: 'mixstitchbold', normal;
+            font-family: 'mixstitchboldbold', normal;
             overflow: auto;
             border-radius: 3px;
         }
@@ -192,7 +187,6 @@
             height: 50px;
         }
 
-
         #button1:hover {
             background: rgba(182, 182, 182, 0.774);
         }
@@ -200,8 +194,6 @@
         #button2:hover {
             background: rgba(182, 182, 182, 0.774);
         }
-
-
 
         .onoffswitch {
             position: relative;
@@ -342,8 +334,6 @@
             position: absolute;
             top: 125px;
             right: 290px;
-
-
         }
 
         .mapboxgl-popup-close-button {
@@ -368,7 +358,6 @@
 </head>
 
 <body style="background-color:rgba(239, 238, 230, 0.774); color: rgb(0, 0, 0)">
-
 
     <div id='map'></div>
     <div class='map-overlay' id='infobox'></div>
@@ -425,14 +414,14 @@
 
     <h2> _ _ _ _ _ Stitching the World</h2>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA'; // replace this with your access token
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA'; // access token for Mapbox Map
         var map = new mapboxgl.Map({
             container: 'map', //container id
-            style: 'mapbox://styles/ga63zup/ck6jf07tv18x91ipiybwjtmaq', // replace this with your style URL
-            center: [-11.26, 43.6], //Atlantik
+            style: 'mapbox://styles/ga63zup/ck6jf07tv18x91ipiybwjtmaq', // style URL
+            center: [-11.26, 43.6], //Atlantic
             zoom: 2,
             maxzoom: 22,
-            renderWorldCopies: false
+            renderWorldCopies: false //only once
         });
 
         var infotext_both =
@@ -445,9 +434,11 @@
             + '<p/>' + ' ' + '<p/>' + ' ' + '<p/>' + '<h6 >' + '&copy; Karin Erbe, Rebekka Spano, TUM (Geodesy and Geoinformation: Cartography Project) 2019/2020' + '</h6>' + '<p/>'
             + '<p/>';
 
+        //infotext startpage with "Welcome"-heading
         var infotext0 = '<h2 style="text-align:right;">' + '_ _ Welcome! _ _ _ _  ' + '</h2>'
             + infotext_both;
 
+        //infotext button response with "Info"-heading
         var infotext = '<h2 style="text-align:right;">' + " _ _ _ _ _ _ Info _ _ _  " + '</h2>'
             + infotext_both;
 
@@ -460,6 +451,7 @@
 
         var slidertext = '<p>Map Samplers by School</p><p>Map Samplers by Mapped Area</p><p>show POI-Symbols</p>';
 
+//START CONFIGURATION (Infobox, Legend, Impressum, Slider, Searchbar, NavigationControl, Scale, Bounds)
         document.getElementById('infobox').innerHTML = infotext0;
         document.getElementById('legendbox').style.visibility = 'hidden';
         document.getElementById('impressumbox').innerHTML = impressumtext;
@@ -474,9 +466,6 @@
                 placeholder: 'Search location'
             }), 'top-left'
         );
-
-
-
 
         map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
@@ -499,10 +488,10 @@
         slider3a.checked = true;
 
 
-        //Information concerning the Map Samplers in Popups and infobox when clicked on a "women-symbol"
+//MAP-SAMPLER_ICONS: Popups and infobox when clicked on a "map-sampler-icon"
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['women_school_layer'] // replace this with the name of the layer
+                layers: ['women_school_layer'] // name of the layer
             });
 
             if (!features.length) {
@@ -511,14 +500,16 @@
 
             var feature = features[0];
 
+            //POPUP
             var popup = new mapboxgl.Popup({ offset: [0, -15], closeOnMove: true })
                 .setLngLat(feature.geometry.coordinates)
                 .setHTML('<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3><h5>' + feature.properties.Depicted + '</h5>')
                 .addTo(map);
 
-            //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            });
+            //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            }); // when popup closed clear Infobox
 
-
+            //INFOBOX
+            //Hyperlinks
             var web = feature.properties.Website;
             var webs = web.split("<br>");
             var i = 0;
@@ -527,7 +518,7 @@
                 website = website + '<a href=' + webs[i] + ' target="_blank">' + webs[i] + '</a>' + '<p/>';
                 i++;
             }
-
+            //Infos on book
             var bookpage = feature.properties.Bookpage;
             var bookfigure = feature.properties.Bookplate;
             var book = "";
@@ -541,21 +532,21 @@
                 else {
                     book = "Stitching the World (Judith A. Tyner): Plate: " + bookfigure + ";";
                 }
-
             }
-
+            //Teacher
             var teach = feature.properties.Teacher;
             var teacher = "";
             if (teacher.length > 0) {
                 teacher = "Teacher: " + teach + '<p/>';
             }
-
+            //Location of school
             var loc = feature.properties.Location;
             var locat = "";
             if (loc.length > 0) {
                 locat = ", " + loc;
             }
 
+            //concatenate textblocks
             document.getElementById('infobox').innerHTML = '<h2 style="text-align:right;">' + " _ _ _ _ _ _ _ by _ _ _  " + '</h2>' +
                 '<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3>'
                 + '<h3>' + feature.properties.Date + '</h3>'
@@ -568,7 +559,7 @@
 
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['women_content_layer'] // replace this with the name of the layer
+                layers: ['women_content_layer'] //name of the layer
             });
 
             if (!features.length) {
@@ -577,14 +568,17 @@
 
             var feature = features[0];
 
+            //POPUP
             var popup = new mapboxgl.Popup({ offset: [0, -15], closeOnMove: true })
                 .setLngLat(feature.geometry.coordinates)
                 .setHTML('<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3>')
                 .addTo(map);
 
 
-            //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            });
+            //popup.on('close', function (e) {               document.getElementById('infobox').innerHTML = '';            }); // when popup closed clear Infobox
 
+            //INFOBOX
+            //Hyperlinks
             var web = feature.properties.Website;
             var webs = web.split("<br>");
             var i = 0;
@@ -593,7 +587,7 @@
                 website = website + '<a href=' + webs[i] + '  target="_blank">' + webs[i] + '</a>' + '<p/>';
                 i++;
             }
-
+            //Infos on book
             var bookpage = feature.properties.Bookpage;
             var bookfigure = feature.properties.Bookplate;
             var book = "";
@@ -607,21 +601,21 @@
                 else {
                     book = "Stitching the World (Judith A. Tyner): Plate: " + bookfigure + ";";
                 }
-
             }
-
+            //Teacher
             var teach = feature.properties.Teacher;
             var teacher = "";
             if (teacher.length > 0) {
                 teacher = "Teacher: " + teach + '<p/>';
             }
-
+            //Location of school
             var loc = feature.properties.Location;
             var locat = "";
             if (loc.length > 0) {
                 locat = ", " + loc;
             }
 
+            //concatenate textblocks
             document.getElementById('infobox').innerHTML = '<h2 style="text-align:right;">' + " _ _ _ _ _ _ _ _ by _ _ _  " + '</h2>' +
                 '<h3>' + feature.properties.Firstname + ' ' + feature.properties.Lastname + '</h3>'
                 + '<h3>' + feature.properties.Date + '</h3>'
@@ -632,16 +626,13 @@
                 + website; //<strong>
         });
 
-        //hidden Legend
+//LEGEND
+        //hide Legend when map moved
         map.on('move', function (e) {
             document.getElementById('legendbox').style.visibility = 'hidden';
         });
 
-
-
-        //Legend
-
-        //if part in map is clicked on without symbol - hide legendbox
+        //if part in map without symbol is clicked on - hide legendbox
         map.on('click', function (e) {
             document.getElementById('legendbox').style.visibility = 'hidden';
         });
@@ -659,10 +650,10 @@
             document.getElementById('legendbox').innerHTML = text;
         });
 
-        //Legend Landuse
+        //Legend Landuse (lu)
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['landuse close'] // replace this with the name of the layer
+                layers: ['landuse close'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -678,7 +669,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['landuse wood medium'] // replace this with the name of the layer
+                layers: ['landuse wood medium'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -689,7 +680,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['landuse park medium'] // replace this with the name of the layer
+                layers: ['landuse park medium'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -698,10 +689,10 @@
             var text = '<h5>' + 'Park' + '</h5>';
             document.getElementById('legendbox').innerHTML = text;
         });
-
+        //Legend Buildings
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['building'] // replace this with the name of the layer
+                layers: ['building'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -713,7 +704,7 @@
         //Legend Roads
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['bridge motorway', 'road motorway', 'tunnel motorway', 'bridge else', 'road else', 'tunnel else', 'pedestrian-path'] // replace this with the name of the layer
+                layers: ['bridge motorway', 'road motorway', 'tunnel motorway', 'bridge else', 'road else', 'tunnel else', 'pedestrian-path'] //names of the layers
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -732,9 +723,10 @@
             var text = '<h5>' + roadlegendtext + '</h5>';
             document.getElementById('legendbox').innerHTML = text;
         });
+        //Legend Rails
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['rail'] // replace this with the name of the layer
+                layers: ['rail'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -743,11 +735,10 @@
             var text = '<h5>' + 'Rail' + '</h5>';
             document.getElementById('legendbox').innerHTML = text;
         });
-
         //Legend Boundaries
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['admin-country-disputed'] // replace this with the name of the layer
+                layers: ['admin-country-disputed'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -758,7 +749,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['admin-country'] // replace this with the name of the layer
+                layers: ['admin-country'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -769,7 +760,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['admin-state-province'] // replace this with the name of the layer
+                layers: ['admin-state-province'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -778,11 +769,10 @@
             var text = '<h5>' + 'State / province boarder' + '</h5>';
             document.getElementById('legendbox').innerHTML = text;
         });
-
-        //Legend Text
+        //Legend Text-Labels
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['country-label'] // replace this with the name of the layer
+                layers: ['country-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -793,7 +783,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['place-city-label'] // replace this with the name of the layer
+                layers: ['place-city-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -804,7 +794,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['place-town-village-hamlet-label'] // replace this with the name of the layer
+                layers: ['place-town-village-hamlet-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -815,7 +805,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['place-neighborhood-suburb-label'] // replace this with the name of the layer
+                layers: ['place-neighborhood-suburb-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -826,7 +816,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['state-label'] // replace this with the name of the layer
+                layers: ['state-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -837,7 +827,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['road-label'] // replace this with the name of the layer
+                layers: ['road-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -846,11 +836,10 @@
             var text = '<h5>' + 'Road Name' + '</h5>';
             document.getElementById('legendbox').innerHTML = text;
         });
-
         //Legend POIs
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['landuse icon - wood far away'] // replace this with the name of the layer
+                layers: ['landuse icon - wood far away'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -861,7 +850,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['rail-icon-munich'] // replace this with the name of the layer
+                layers: ['rail-icon-munich'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -871,7 +860,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['harbor-label'] // replace this with the name of the layer
+                layers: ['harbor-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -882,7 +871,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['airport-label'] // replace this with the name of the layer
+                layers: ['airport-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -893,7 +882,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['poi-label'] // replace this with the name of the layer
+                layers: ['poi-label'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -925,7 +914,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['poi-label university'] // replace this with the name of the layer
+                layers: ['poi-label university'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -944,7 +933,7 @@
         });
         map.on('click', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['national_park'] // replace this with the name of the layer
+                layers: ['national_park'] //name of the layer
             });
             if (!features.length) { return; }
             var feature = features[0];
@@ -955,9 +944,9 @@
         });
 
 
-        //clusters: layer with map sampler info
+//CLUSTERS
+        //map-sampler-icons school (blue)
         map.on('load', function () {
-
             map.addSource('women_school', {
                 type: 'geojson',
                 // Point to GeoJSON data.
@@ -967,6 +956,7 @@
                 clusterRadius: 70 // Radius of each cluster when clustering points (defaults to 50)
             });
 
+            //Cluster-circles
             map.addLayer({
                 id: 'clusters_school',
                 type: 'circle',
@@ -975,10 +965,6 @@
                 layout: { visibility: 'visible' },
                 paint: {
                     // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-                    // with three steps to implement three types of circles:
-                    //   * Blue, 20px circles when point count is less than 100
-                    //   * Yellow, 30px circles when point count is between 100 and 750
-                    //   * Pink, 40px circles when point count is greater than or equal to 750
                     'circle-color': [
                         'step',
                         ['get', 'point_count'],
@@ -998,7 +984,7 @@
                     'circle-opacity': 0.5
                 }
             });
-
+            //Cluster count
             map.addLayer({
                 id: 'clusters-count_school',
                 type: 'symbol',
@@ -1011,7 +997,7 @@
                     visibility: 'visible'
                 }
             });
-
+            //1 icon "clustered"
             map.addLayer({
                 id: 'unclustered-point_school',
                 type: 'circle',
@@ -1023,7 +1009,7 @@
                 },
                 'maxzoom': 7.5
             });
-
+            //1 icon "clustered" count
             map.addLayer({
                 id: 'unclustered-count_school',
                 type: 'symbol',
@@ -1057,10 +1043,7 @@
                 );
             });
 
-            // When a click event occurs on a feature in
-            // the unclustered-point_school layer, open a popup at
-            // the location of the feature, with
-            // description HTML from its properties.
+            // When a click event occurs on a feature in the unclustered-point_school layer zoom in/flyTo
             map.on('click', 'unclustered-point_school', function (e) {
                 var coordinates = e.features[0].geometry.coordinates.slice();
 
@@ -1077,6 +1060,7 @@
                 });
             });
 
+            //Cursor appearance
             map.on('mouseenter', 'clusters_school', function () {
                 map.getCanvas().style.cursor = 'pointer';
             });
@@ -1099,9 +1083,8 @@
 
         });
 
+        //map-sampler-icons content/subject/depictedLocation (green)
         map.on('load', function () {
-
-            //women location/content
             map.addSource('women_content', {
                 type: 'geojson',
                 // Point to GeoJSON data.
@@ -1111,14 +1094,13 @@
                 clusterRadius: 70 // Radius of each cluster when clustering points (defaults to 50)
             });
 
+            //Cluster-labels
             map.addSource('women_content_label', {
                 type: 'geojson',
                 // Point to GeoJSON data.
                 data: 'https://api.mapbox.com/datasets/v1/ga63zup/ck9l0y04w1ub92tmyw56368ke/features?access_token=pk.eyJ1IjoiZ2E2M3p1cCIsImEiOiJjajRnd25kZWgwN2hrMnFtcnRmeXdhdHloIn0.yMy6f9QTPWV9PLtZigr4qA',
-
             });
-
-
+            //Cluster-circles
             map.addLayer({
                 id: 'clusters_content',
                 type: 'circle',
@@ -1127,10 +1109,6 @@
                 layout: { visibility: 'none' },
                 paint: {
                     // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-                    // with three steps to implement three types of circles:
-                    //   * Blue, 20px circles when point count is less than 100
-                    //   * Yellow, 30px circles when point count is between 100 and 750
-                    //   * Pink, 40px circles when point count is greater than or equal to 750
                     'circle-color': [
                         'step',
                         ['get', 'point_count'],
@@ -1150,7 +1128,7 @@
                     'circle-opacity': 0.5
                 }
             });
-
+            //CLuster Count (less important than labels)
             map.addLayer({
                 id: 'clusters-count_content',
                 type: 'symbol',
@@ -1163,7 +1141,7 @@
                     visibility: 'none'
                 }
             });
-
+            // 1 icon "clustered"
             map.addLayer({
                 id: 'unclustered-point_content',
                 type: 'circle',
@@ -1175,7 +1153,7 @@
                 },
                 'maxzoom': 6
             });
-
+            //1 icon "clustered" count
             map.addLayer({
                 id: 'unclustered-count_content',
                 type: 'symbol',
@@ -1209,10 +1187,7 @@
                 );
             });
 
-            // When a click event occurs on a feature in
-            // the unclustered-point_content layer, open a popup at
-            // the location of the feature, with
-            // description HTML from its properties.
+            // When a click event occurs on a feature in the unclustered-point_content layer zoom in/flyTo
             map.on('click', 'unclustered-point_content', function (e) {
                 var coordinates = e.features[0].geometry.coordinates.slice();
                 // Ensure that if the map is zoomed out such that
@@ -1228,6 +1203,7 @@
                 });
             });
 
+            //Cursor appearance
             map.on('mouseenter', 'clusters_content', function () {
                 map.getCanvas().style.cursor = 'pointer';
             });
@@ -1246,9 +1222,7 @@
             map.on('mouseleave', 'unclustered-point_content', function () {
                 map.getCanvas().style.cursor = '';
             });
-
-
-
+            //Cluster-labels
             map.addLayer({
                 id: 'label_of_women_content',
                 type: 'symbol',
@@ -1263,19 +1237,18 @@
                 paint: { 'text-color': '#5e5e5e', 'text-halo-width': 2, 'text-halo-color': "rgba(127, 255, 0, 0.5)" }
             });
 
-            //Info
+//Info-BUTTON
             button1.onclick = function (e) {
-                //var clickedLayer = this.textContent;
                 e.preventDefault();
                 e.stopPropagation();
                 document.getElementById('infobox').innerHTML = infotext;
             };
 
-            //Impressum
+//Impressum-BUTTON
             button2.onclick = function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                //var clickedLayer = this.textContent;
+
                 if (button2.innerHTML === 'Impressum') {
                     document.getElementById('impressumbox').style.visibility = 'visible';
                     button2.innerHTML = 'close Impressum';
@@ -1284,15 +1257,13 @@
                     document.getElementById('impressumbox').style.visibility = 'hidden';
                     button2.innerHTML = 'Impressum';
                 }
-
             };
-
-
         });
 
+//HIDE/SHOW LAYERS: SLIDER ACTIONS
         map.on('render', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['women_school_layer'] // replace this with the name of the layer
+                layers: ['women_school_layer'] // name of the layer
             });
             if (!features.length) { return; }
 
@@ -1302,11 +1273,10 @@
             if (map.getLayoutProperty('clusters_school', 'visibility') === 'visible') {
                 map.setLayoutProperty('women_school_layer', 'icon-size', ["interpolate", ["linear"], ["zoom"], 0, 0.4, 10, 1]);
             }
-
         });
         map.on('render', function (e) {
             var features = map.queryRenderedFeatures(e.point, {
-                layers: ['women_content_layer'] // replace this with the name of the layer, , 'women_content_label'
+                layers: ['women_content_layer'] //name of the layer, , 'women_content_label'
             });
             if (!features.length) { return; }
 
@@ -1316,7 +1286,6 @@
             if (map.getLayoutProperty('clusters_content', 'visibility') === 'visible') {
                 map.setLayoutProperty('women_content_layer', 'icon-size', ["interpolate", ["linear"], ["zoom"], 0, 0.25, 6, 0.25, 8, 0.9]);
             }
-
         });
 
         function hideLayer(layer) {
@@ -1330,7 +1299,7 @@
         //women_school
         function updateBySchool() {
             //var clickedLayer = this.textContent;
-            if (slider1a.checked === false) {
+            if (slider1a.checked === false) { //blue off
                 hideLayer('clusters_school');
                 hideLayer('clusters-count_school');
                 hideLayer('unclustered-point_school');
@@ -1338,7 +1307,7 @@
                 map.setLayoutProperty('women_school_layer', 'icon-size', 0);
 
             }
-            else {
+            else { //blue on
                 showLayer('clusters_school');
                 showLayer('clusters-count_school');
                 showLayer('unclustered-point_school');
@@ -1349,14 +1318,14 @@
                 hideLayer('unclustered-count_content');
                 hideLayer('label_of_women_content');
                 map.setLayoutProperty('women_school_layer', 'icon-size', ["interpolate", ["linear"], ["zoom"], 0, 0.4, 10, 1]);
-                slider2a.checked = false;
+                slider2a.checked = false; //green off
                 map.setMaxZoom(22);
             }
 
         };
         //women_content
         function updateByMappedArea() {
-            if (slider2a.checked === false) {
+            if (slider2a.checked === false) { //green off
                 hideLayer('clusters_content');
                 hideLayer('clusters-count_content');
                 hideLayer('unclustered-point_content');
@@ -1365,7 +1334,7 @@
                 map.setLayoutProperty('women_content_layer', 'icon-size', 0);
                 map.setMaxZoom(22);
             }
-            else {
+            else { //green on
                 showLayer('clusters_content');
                 showLayer('clusters-count_content');
                 showLayer('unclustered-point_content');
@@ -1376,14 +1345,14 @@
                 hideLayer('unclustered-point_school');
                 hideLayer('unclustered-count_school');
                 map.setLayoutProperty('women_content_layer', 'icon-size', ["interpolate", ["linear"], ["zoom"], 0, 0.25, 6, 0.25, 8, 0.9]);
-                slider1a.checked = false;
+                slider1a.checked = false; //blue off
                 map.setMaxZoom(7.99);
             }
 
         };
         //POIs
         function updateSymbols() {
-            if (slider3a.checked === false) {
+            if (slider3a.checked === false) { //POIs off
                 map.setLayoutProperty('poi-label', 'icon-size', 0);
                 map.setLayoutProperty('rail-icon-munich', 'icon-size', 0);
                 map.setLayoutProperty('harbor-label', 'icon-size', 0);
@@ -1399,7 +1368,7 @@
                 map.setLayoutProperty('poi-label university', 'text-offset', [0, 0]);
 
             }
-            else {
+            else { //POIs on: set sizes
                 map.setLayoutProperty('poi-label', 'icon-size', [
                     "match",
                     ["get", "maki"],
@@ -1435,7 +1404,6 @@
                     8, 0.2,
                     12, 0.12,
                     18, 0.1
-
                 ]);
                 map.setLayoutProperty('poi-label university', 'icon-size', [
                     "match",
@@ -1497,9 +1465,7 @@
                     ["literal", [0, 0.75]]
                 ]);
             }
-
         };
-
 
     </script>
 </body>
