@@ -892,7 +892,7 @@
             var poilegendtext = "";
             if (poi === 'hospital') { poilegendtext = 'Hospital'; }
             else if (poi === 'lodging') { poilegendtext = 'Hotel'; }
-            else if (poi === 'grocery') { poilegendtext = 'Supermarket'; }
+            else if (poi === 'grocery') { poilegendtext = 'Grocery Store'; }
             else if (poi === 'restaurant') { poilegendtext = 'Restaurant'; }
             else if (poi === 'park') { poilegendtext = 'Park'; }
             else if (poi === 'cemetery') { poilegendtext = 'Cemetery'; }
@@ -906,6 +906,7 @@
             else if (poi === 'museum') { poilegendtext = 'Museum'; }
             else if (poi === 'amusement-park') { poilegendtext = 'Amusement Park'; }
             else if (poi === 'attraction') { poilegendtext = 'Attraction'; }
+            else if (poi === 'parking') { poilegendtext = 'Parking'; }
             else { return; }
 
             document.getElementById('legendbox').style.visibility = 'visible';
@@ -925,7 +926,7 @@
             if (uni === 'Technische Universität München') { unilegendtext = 'Technische Universität München'; }
             else if (uni === 'Ludwigs-Maximilians-Universität') { unilegendtext = 'Ludwig-Maximilian-Universität'; }
             else if (uni === 'Ludwig-Maximilians-Universität') { unilegendtext = 'Ludwig-Maximilian-Universität'; }
-            else { unilegendtext = 'Education'; }
+            else { unilegendtext = 'University / College / Education'; }
 
             document.getElementById('legendbox').style.visibility = 'visible';
             var text = '<h5>' + unilegendtext + '</h5>';
